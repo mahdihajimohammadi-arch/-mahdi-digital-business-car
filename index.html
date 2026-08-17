@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Mahdi Hajimohammadi | Digital Business Card</title>
+
+  <meta name="description"
+        content="Mahdi Hajimohammadi - First Counsellor, Embassy of the Islamic Republic of Iran in Riyadh">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #f1eee7;
+      font-family: Arial, "Noto Sans", sans-serif;
+      color: #222;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 760px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    }
+
+    .top {
+      text-align: center;
+      padding: 30px 20px 18px;
+    }
+
+    .organization {
+      font-size: 12px;
+      letter-spacing: 1px;
+      color: #777;
+      text-transform: uppercase;
+      line-height: 1.5;
+    }
+
+    .name {
+      margin: 10px 0 5px;
+      font-size: 29px;
+      font-weight: 700;
+    }
+
+    .digital {
+      color: #777;
+      font-size: 14px;
+    }
+
+    /* LANGUAGE SELECTION */
+
+    .language {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      padding: 10px 20px 25px;
+    }
+
+    .language button {
+      border: 1px solid #bbb;
+      background: white;
+      padding: 11px 25px;
+      border-radius: 30px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .language button.active {
+      background: #222;
+      color: white;
+      border-color: #222;
+    }
+
+    /* CARD IMAGE */
+
+    .card-image {
+      padding: 0 20px;
+    }
+
+    .card-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 15px;
+    }
+
+    /* INFORMATION */
+
+    .information {
+      padding: 28px;
+    }
+
+    .language-panel {
+      display: none;
+    }
+
+    .language-panel.active {
+      display: block;
+    }
+
+    .person-name {
+      font-size: 23px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .position {
+      color: #555;
+      font-size: 17px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .detail {
+      padding: 13px 0;
+      border-bottom: 1px solid #eeeeee;
+    }
+
+    .label {
+      font-size: 11px;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+    }
+
+    .value {
+      margin-top: 5px;
+      font-size: 16px;
+      word-break: break-word;
+    }
+
+    .value a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* BUTTONS */
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .actions a {
+      display: inline-block;
+      padding: 11px 16px;
+      border-radius: 9px;
+      background: #222;
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    /* ARABIC */
+
+    .arabic {
+      direction: rtl;
+      text-align: right;
+    }
+
+    .arabic .label {
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .arabic .actions {
+      justify-content: flex-start;
+    }
+
+    /* FOOTER */
+
+    .footer {
+      text-align: center;
+      color: #999;
+      font-size: 11px;
+      padding: 0 20px 25px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 500px) {
+
+      .container {
+        padding: 10px;
+      }
+
+      .name {
+        font-size: 25px;
+      }
+
+      .information {
+        padding: 22px;
+      }
+
+      .position {
+        font-size: 16px;
+      }
+
+      .actions a {
+        flex: 1;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="card">
+
+    <!-- HEADER -->
+
+    <div class="top">
+
+      <div class="organization">
+        Embassy of the Islamic Republic of Iran · Riyadh
+      </div>
+
+      <div class="name">
+        Mahdi Hajimohammadi
+      </div>
+
+      <div class="digital">
+        Digital Business Card
+      </div>
+
+    </div>
+
+
+    <!-- LANGUAGE SELECTION -->
+
+    <div class="language">
+
+      <button
+        id="englishButton"
+        class="active"
+        onclick="showLanguage('english')">
+
+        English
+
+      </button>
+
+      <button
+        id="arabicButton"
+        onclick="showLanguage('arabic')">
+
+        العربية
+
+      </button>
+
+    </div>
+
+
+    <!-- CARD IMAGE -->
+
+    <!--
+      بعد از اینکه عکس کارت را در GitHub آپلود کردی،
+      نام فایل را در قسمت src قرار بده.
+
+      مثال:
+
+      <img src="business-card.jpg">
+
+    -->
+
+    <div class="card-image">
+
+      <img
+        src="business-card.jpg"
+        alt="Mahdi Hajimohammadi Business Card">
+
+    </div>
+
+
+    <!-- INFORMATION -->
+
+    <div class="information">
+
+
+      <!-- ENGLISH -->
+
+      <section
+        id="english"
+        class="language-panel active">
+
+        <div class="person-name">
+          Mahdi Hajimohammadi
+        </div>
+
+        <div class="position">
+
+          <strong>
+            First Counsellor
+          </strong>
+
+          <br>
+
+          Legal and International Affairs Specialist
+
+          <br>
+
+          Embassy of the Islamic Republic of Iran in Riyadh
+
+        </div>
+
+
+        <div class="detail">
+
+          <div class="label">
+            Mobile
+          </div>
+
+          <div class="value">
+
+            <a href="tel:+966581810190">
+              +966 58 181 0190
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div class="detail">
+
+          <div class="label">
+            Email
+          </div>
+
+          <div class="value">
+
+            <a href="mailto:hajimohammadi_m@yahoo.com">
+              hajimohammadi_m@yahoo.com
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div class="detail">
+
+          <div class="label">
+            Telegram
+          </div>
+
+          <div class="value">
+
+            <a
+              href="https://t.me/Iran_Riyadh"
+              target="_blank">
+
+              @Iran_Riyadh
+
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div class="actions">
+
+          <a href="tel:+966581810190">
+            Call
+          </a>
+
+          <a href="mailto:hajimohammadi_m@yahoo.com">
+            Email
+          </a>
+
+          <a
+            href="https://t.me/Iran_Riyadh"
+            target="_blank">
+
+            Telegram
+
+          </a>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- ARABIC -->
+
+      <section
+        id="arabic"
+        class="language-panel arabic">
+
+        <div class="person-name">
+          مهدي حاجي محمدي
+        </div>
+
+        <div class="position">
+
+          <strong>
+            المستشار الأول
+          </strong>
+
+          <br>
+
+          الشؤون القانونية والدولية
+
+          <br>
+
+          سفارة الجمهورية الإسلامية الإيرانية في الرياض
+
+        </div>
+
+
+        <div class="detail">
+
+          <div class="label">
+            الهاتف المحمول
+          </div>
+
+          <div class="value">
+
+            <a href="tel:+966581810190">
+              +966 58 181 0190
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div class="detail">
+
+          <div class="label">
+            البريد الإلكتروني
+          </div>
+
+          <div class="value">
+
+            <a href="mailto:hajimohammadi_m@yahoo.com">
+
+              hajimohammadi_m@yahoo.com
+
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div class="detail">
+
+          <div class="label">
+            تلغرام
+          </div>
+
+          <div class="value">
+
+            <a
+              href="https://t.me/Iran_Riyadh"
+              target="_blank">
+
+              @Iran_Riyadh
+
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div class="actions">
+
+          <a href="tel:+966581810190">
+            اتصال
+          </a>
+
+          <a href="mailto:hajimohammadi_m@yahoo.com">
+            البريد الإلكتروني
+          </a>
+
+          <a
+            href="https://t.me/Iran_Riyadh"
+            target="_blank">
+
+            تلغرام
+          </a>
+
+        </div>
+
+      </section>
+
+    </div>
+
+
+    <div class="footer">
+      Digital Business Card
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- LANGUAGE SCRIPT -->
+
+<script>
+
+function showLanguage(language) {
+
+  const english =
+    document.getElementById("english");
+
+  const arabic =
+    document.getElementById("arabic");
+
+  const englishButton =
+    document.getElementById("englishButton");
+
+  const arabicButton =
+    document.getElementById("arabicButton");
+
+
+  if (language === "english") {
+
+    english.classList.add("active");
+
+    arabic.classList.remove("active");
+
+    englishButton.classList.add("active");
+
+    arabicButton.classList.remove("active");
+
+    document.documentElement.lang = "en";
+
+  }
+
+
+  if (language === "arabic") {
+
+    arabic.classList.add("active");
+
+    english.classList.remove("active");
+
+    arabicButton.classList.add("active");
+
+    englishButton.classList.remove("active");
+
+    document.documentElement.lang = "ar";
+
+  }
+
+}
+
+</script>
+
+</body>
+</html>

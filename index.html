@@ -45,7 +45,6 @@
       font-size: 12px;
       letter-spacing: 1px;
       color: #777;
-      text-transform: uppercase;
       line-height: 1.5;
     }
 
@@ -121,7 +120,7 @@
     .position {
       color: #555;
       font-size: 17px;
-      line-height: 1.6;
+      line-height: 1.7;
       margin-bottom: 20px;
     }
 
@@ -146,6 +145,15 @@
     .value a {
       color: inherit;
       text-decoration: none;
+    }
+
+    /* LTR INFORMATION */
+
+    .ltr {
+      direction: ltr;
+      unicode-bidi: isolate;
+      display: inline-block;
+      text-align: left;
     }
 
     /* BUTTONS */
@@ -181,6 +189,20 @@
 
     .arabic .actions {
       justify-content: flex-start;
+    }
+
+    /* IMPORTANT:
+       Phone, email and Telegram stay LTR
+       inside the Arabic version.
+    */
+
+    .arabic .value a[href^="tel:"],
+    .arabic .value a[href^="mailto:"],
+    .arabic .value a[href^="https://t.me/"] {
+      direction: ltr;
+      unicode-bidi: isolate;
+      display: inline-block;
+      text-align: left;
     }
 
     /* FOOTER */
@@ -271,20 +293,11 @@
 
     <!-- CARD IMAGE -->
 
-    <!--
-      بعد از اینکه عکس کارت را در GitHub آپلود کردی،
-      نام فایل را در قسمت src قرار بده.
-
-      مثال:
-
-      <img src="business-card.jpg">
-
-    -->
-
     <div class="card-image">
 
       <img
-        src="business-card.jpg"
+        id="businessCardImage"
+        src="english-card.jpg"
         alt="Mahdi Hajimohammadi Business Card">
 
     </div>
@@ -293,7 +306,6 @@
     <!-- INFORMATION -->
 
     <div class="information">
-
 
       <!-- ENGLISH -->
 
@@ -330,8 +342,12 @@
 
           <div class="value">
 
-            <a href="tel:+966581810190">
+            <a
+              class="ltr"
+              href="tel:+966581810190">
+
               +966 58 181 0190
+
             </a>
 
           </div>
@@ -347,8 +363,12 @@
 
           <div class="value">
 
-            <a href="mailto:hajimohammadi_m@yahoo.com">
+            <a
+              class="ltr"
+              href="mailto:hajimohammadi_m@yahoo.com">
+
               hajimohammadi_m@yahoo.com
+
             </a>
 
           </div>
@@ -365,8 +385,10 @@
           <div class="value">
 
             <a
+              class="ltr"
               href="https://t.me/Iran_Riyadh"
-              target="_blank">
+              target="_blank"
+              rel="noopener">
 
               @Iran_Riyadh
 
@@ -389,7 +411,8 @@
 
           <a
             href="https://t.me/Iran_Riyadh"
-            target="_blank">
+            target="_blank"
+            rel="noopener">
 
             Telegram
 
@@ -398,7 +421,6 @@
         </div>
 
       </section>
-
 
 
       <!-- ARABIC -->
@@ -436,8 +458,12 @@
 
           <div class="value">
 
-            <a href="tel:+966581810190">
+            <a
+              class="ltr"
+              href="tel:+966581810190">
+
               +966 58 181 0190
+
             </a>
 
           </div>
@@ -453,7 +479,9 @@
 
           <div class="value">
 
-            <a href="mailto:hajimohammadi_m@yahoo.com">
+            <a
+              class="ltr"
+              href="mailto:hajimohammadi_m@yahoo.com">
 
               hajimohammadi_m@yahoo.com
 
@@ -473,8 +501,10 @@
           <div class="value">
 
             <a
+              class="ltr"
               href="https://t.me/Iran_Riyadh"
-              target="_blank">
+              target="_blank"
+              rel="noopener">
 
               @Iran_Riyadh
 
@@ -497,9 +527,11 @@
 
           <a
             href="https://t.me/Iran_Riyadh"
-            target="_blank">
+            target="_blank"
+            rel="noopener">
 
             تلغرام
+
           </a>
 
         </div>
@@ -536,18 +568,24 @@ function showLanguage(language) {
   const arabicButton =
     document.getElementById("arabicButton");
 
+  const cardImage =
+    document.getElementById("businessCardImage");
+
 
   if (language === "english") {
 
     english.classList.add("active");
-
     arabic.classList.remove("active");
 
     englishButton.classList.add("active");
-
     arabicButton.classList.remove("active");
 
     document.documentElement.lang = "en";
+
+    /* BLACK / GOLD CARD */
+    cardImage.src = "english-card.jpg";
+    cardImage.alt =
+      "Mahdi Hajimohammadi English Business Card";
 
   }
 
@@ -555,14 +593,17 @@ function showLanguage(language) {
   if (language === "arabic") {
 
     arabic.classList.add("active");
-
     english.classList.remove("active");
 
     arabicButton.classList.add("active");
-
     englishButton.classList.remove("active");
 
     document.documentElement.lang = "ar";
+
+    /* CREAM / GOLD CARD */
+    cardImage.src = "arabic-card.jpg";
+    cardImage.alt =
+      "Mahdi Hajimohammadi Arabic Business Card";
 
   }
 

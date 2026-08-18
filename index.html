@@ -1,242 +1,288 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111111">
 
   <title>Mahdi Hajimohammadi | Digital Business Card</title>
-
-  <meta name="description"
-        content="Mahdi Hajimohammadi - First Counsellor, Embassy of the Islamic Republic of Iran in Riyadh">
 
   <style>
     * {
       box-sizing: border-box;
     }
 
+    html,
     body {
       margin: 0;
+      padding: 0;
+      min-height: 100%;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top, #343434 0%, #171717 42%, #080808 100%);
+      color: #ffffff;
       min-height: 100vh;
-      background: #f1eee7;
-      font-family: Arial, "Noto Sans", sans-serif;
-      color: #222;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 25px 15px;
     }
 
     .container {
       width: 100%;
-      max-width: 760px;
-      margin: auto;
-      padding: 20px;
-    }
-
-    .card {
-      background: #ffffff;
-      border-radius: 22px;
-      overflow: hidden;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
-    }
-
-    .top {
+      max-width: 650px;
       text-align: center;
-      padding: 30px 20px 18px;
     }
 
-    .organization {
-      font-size: 12px;
-      letter-spacing: 1px;
-      color: #777;
-      line-height: 1.5;
-    }
-
-    .name {
-      margin: 10px 0 5px;
-      font-size: 29px;
+    .title {
+      font-size: 28px;
       font-weight: 700;
-    }
-
-    .digital {
-      color: #777;
-      font-size: 14px;
-    }
-
-    /* LANGUAGE SELECTION */
-
-    .language {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      padding: 10px 20px 25px;
-    }
-
-    .language button {
-      border: 1px solid #bbb;
-      background: white;
-      padding: 11px 25px;
-      border-radius: 30px;
-      font-size: 15px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .language button.active {
-      background: #222;
-      color: white;
-      border-color: #222;
-    }
-
-    /* CARD IMAGE */
-
-    .card-image {
-      padding: 0 20px;
-    }
-
-    .card-image img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 15px;
-    }
-
-    /* INFORMATION */
-
-    .information {
-      padding: 28px;
-    }
-
-    .language-panel {
-      display: none;
-    }
-
-    .language-panel.active {
-      display: block;
-    }
-
-    .person-name {
-      font-size: 23px;
-      font-weight: bold;
       margin-bottom: 8px;
     }
 
-    .position {
-      color: #555;
-      font-size: 17px;
-      line-height: 1.7;
+    .subtitle {
+      color: #c9c9c9;
+      font-size: 14px;
+      margin-bottom: 30px;
+    }
+
+    .language-box {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      margin-bottom: 28px;
+    }
+
+    .language-btn {
+      border: 1px solid #b68a2c;
+      background: rgba(182, 138, 44, 0.08);
+      color: #e4c77d;
+      border-radius: 12px;
+      padding: 13px 30px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      min-width: 130px;
+    }
+
+    .language-btn:hover,
+    .language-btn.active {
+      background: #b68a2c;
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .card-section {
+      display: none;
+      animation: fadeIn 0.35s ease;
+    }
+
+    .card-section.active {
+      display: block;
+    }
+
+    .business-card {
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #ffffff;
+      box-shadow:
+        0 20px 55px rgba(0, 0, 0, 0.55),
+        0 0 0 1px rgba(255, 255, 255, 0.08);
       margin-bottom: 20px;
     }
 
-    .detail {
-      padding: 13px 0;
-      border-bottom: 1px solid #eeeeee;
+    .business-card img {
+      display: block;
+      width: 100%;
+      height: auto;
     }
 
-    .label {
-      font-size: 11px;
-      color: #888;
-      text-transform: uppercase;
-      letter-spacing: 0.7px;
-    }
-
-    .value {
-      margin-top: 5px;
-      font-size: 16px;
-      word-break: break-word;
-    }
-
-    .value a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    /* LTR INFORMATION */
-
-    .ltr {
-      direction: ltr;
-      unicode-bidi: isolate;
-      display: inline-block;
+    .info {
+      background: rgba(20, 20, 20, 0.94);
+      border: 1px solid rgba(182, 138, 44, 0.35);
+      border-radius: 16px;
+      padding: 25px 22px;
       text-align: left;
     }
 
-    /* BUTTONS */
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 22px;
-    }
-
-    .actions a {
-      display: inline-block;
-      padding: 11px 16px;
-      border-radius: 9px;
-      background: #222;
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    /* ARABIC */
-
-    .arabic {
+    .info.rtl {
       direction: rtl;
       text-align: right;
     }
 
-    .arabic .label {
-      text-transform: none;
-      letter-spacing: 0;
+    .name {
+      font-size: 25px;
+      font-weight: 700;
+      color: #e1bf6a;
+      margin-bottom: 8px;
     }
 
-    .arabic .actions {
-      justify-content: flex-start;
+    .position {
+      font-size: 17px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.6;
+      margin-bottom: 4px;
     }
 
-    /* IMPORTANT:
-       Phone, email and Telegram stay LTR
-       inside the Arabic version.
-    */
+    .organization {
+      color: #cfcfcf;
+      font-size: 15px;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
 
-    .arabic .value a[href^="tel:"],
-    .arabic .value a[href^="mailto:"],
-    .arabic .value a[href^="https://t.me/"] {
+    .contact {
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: 17px;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 11px 0;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .contact-icon {
+      width: 32px;
+      height: 32px;
+      flex: 0 0 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #b68a2c;
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    .contact-row a {
+      color: #eeeeee;
+      text-decoration: none;
+      overflow-wrap: anywhere;
+    }
+
+    .contact-row a:hover {
+      color: #e1bf6a;
+    }
+
+    .rtl .contact-row {
+      direction: rtl;
+    }
+
+    .rtl .ltr {
       direction: ltr;
       unicode-bidi: isolate;
       display: inline-block;
       text-align: left;
     }
 
-    /* FOOTER */
+    /* ================= ACTION BUTTONS ================= */
 
-    .footer {
-      text-align: center;
-      color: #999;
-      font-size: 11px;
-      padding: 0 20px 25px;
+    .action-box {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 20px;
+      flex-wrap: wrap;
     }
 
-    /* MOBILE */
+    .action-btn {
+      border: 1px solid #b68a2c;
+      background: #b68a2c;
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 12px 18px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      min-width: 145px;
+      transition: all 0.2s ease;
+    }
 
-    @media (max-width: 500px) {
+    .action-btn.secondary {
+      background: transparent;
+      color: #e4c77d;
+    }
 
-      .container {
-        padding: 10px;
+    .action-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .footer {
+      margin-top: 22px;
+      color: #777777;
+      font-size: 11px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .page {
+        padding: 18px 12px;
+      }
+
+      .title {
+        font-size: 23px;
+      }
+
+      .language-box {
+        gap: 9px;
+      }
+
+      .language-btn {
+        min-width: 115px;
+        padding: 12px 18px;
+      }
+
+      .business-card {
+        border-radius: 12px;
+      }
+
+      .info {
+        padding: 20px 17px;
       }
 
       .name {
-        font-size: 25px;
-      }
-
-      .information {
-        padding: 22px;
+        font-size: 21px;
       }
 
       .position {
-        font-size: 16px;
+        font-size: 15px;
       }
 
-      .actions a {
-        flex: 1;
-        text-align: center;
+      .organization {
+        font-size: 14px;
+      }
+
+      .action-btn {
+        width: 100%;
       }
     }
   </style>
@@ -244,372 +290,391 @@
 
 <body>
 
-<div class="container">
+  <div class="page">
+    <main class="container">
 
-  <div class="card">
-
-    <!-- HEADER -->
-
-    <div class="top">
-
-      <div class="organization">
-        Embassy of the Islamic Republic of Iran · Riyadh
-      </div>
-
-      <div class="name">
+      <div class="title">
         Mahdi Hajimohammadi
       </div>
 
-      <div class="digital">
+      <div class="subtitle">
         Digital Business Card
       </div>
 
-    </div>
+      <!-- LANGUAGE SELECTION -->
+
+      <div class="language-box">
+
+        <button
+          class="language-btn active"
+          id="englishBtn"
+          onclick="showLanguage('english')">
+          English
+        </button>
+
+        <button
+          class="language-btn"
+          id="arabicBtn"
+          onclick="showLanguage('arabic')">
+          العربية
+        </button>
+
+      </div>
 
 
-    <!-- LANGUAGE SELECTION -->
-
-    <div class="language">
-
-      <button
-        id="englishButton"
-        class="active"
-        onclick="showLanguage('english')">
-
-        English
-
-      </button>
-
-      <button
-        id="arabicButton"
-        onclick="showLanguage('arabic')">
-
-        العربية
-
-      </button>
-
-    </div>
-
-
-    <!-- CARD IMAGE -->
-
-    <div class="card-image">
-
-      <img
-        id="businessCardImage"
-        src="english-card.jpg"
-        alt="Mahdi Hajimohammadi Business Card">
-
-    </div>
-
-
-    <!-- INFORMATION -->
-
-    <div class="information">
-
-      <!-- ENGLISH -->
+      <!-- ==================== ENGLISH ==================== -->
 
       <section
         id="english"
-        class="language-panel active">
+        class="card-section active"
+        lang="en"
+        dir="ltr">
 
-        <div class="person-name">
-          Mahdi Hajimohammadi
+        <div class="business-card">
+
+          <img
+            src="english.jpeg"
+            alt="Mahdi Hajimohammadi English Business Card">
+
         </div>
 
-        <div class="position">
+        <div class="info">
 
-          <strong>
+          <div class="name">
+            Mahdi Hajimohammadi
+          </div>
+
+          <div class="position">
             First Counsellor
-          </strong>
+          </div>
 
-          <br>
+          <div class="position">
+            Legal and International Affairs Specialist
+          </div>
 
-          Legal and International Affairs Specialist
+          <div class="organization">
+            Embassy of the Islamic Republic of Iran in Riyadh
+          </div>
 
-          <br>
+          <div class="contact">
 
-          Embassy of the Islamic Republic of Iran in Riyadh
+            <div class="contact-row">
+              <span class="contact-icon">☎</span>
 
+              <a
+                class="ltr"
+                href="tel:+966581810190">
+                +966 58 181 0190
+              </a>
+            </div>
+
+            <div class="contact-row">
+              <span class="contact-icon">@</span>
+
+              <a
+                class="ltr"
+                href="mailto:hajimohammadi_m@yahoo.com">
+                hajimohammadi_m@yahoo.com
+              </a>
+            </div>
+
+            <div class="contact-row">
+              <span class="contact-icon">TG</span>
+
+              <a
+                class="ltr"
+                href="https://t.me/Iran_Riyadh"
+                target="_blank"
+                rel="noopener noreferrer">
+                @Iran_Riyadh
+              </a>
+            </div>
+
+          </div>
         </div>
 
 
-        <div class="detail">
+        <!-- ACTIONS -->
 
-          <div class="label">
-            Mobile
-          </div>
+        <div class="action-box">
 
-          <div class="value">
+          <button
+            class="action-btn"
+            onclick="saveContact()">
+            Save Contact
+          </button>
 
-            <a
-              class="ltr"
-              href="tel:+966581810190">
-
-              +966 58 181 0190
-
-            </a>
-
-          </div>
-
-        </div>
-
-
-        <div class="detail">
-
-          <div class="label">
-            Email
-          </div>
-
-          <div class="value">
-
-            <a
-              class="ltr"
-              href="mailto:hajimohammadi_m@yahoo.com">
-
-              hajimohammadi_m@yahoo.com
-
-            </a>
-
-          </div>
-
-        </div>
-
-
-        <div class="detail">
-
-          <div class="label">
-            Telegram
-          </div>
-
-          <div class="value">
-
-            <a
-              class="ltr"
-              href="https://t.me/Iran_Riyadh"
-              target="_blank"
-              rel="noopener">
-
-              @Iran_Riyadh
-
-            </a>
-
-          </div>
-
-        </div>
-
-
-        <div class="actions">
-
-          <a href="tel:+966581810190">
-            Call
-          </a>
-
-          <a href="mailto:hajimohammadi_m@yahoo.com">
-            Email
-          </a>
-
-          <a
-            href="https://t.me/Iran_Riyadh"
-            target="_blank"
-            rel="noopener">
-
-            Telegram
-
-          </a>
+          <button
+            class="action-btn secondary"
+            onclick="shareCard()">
+            Share Card
+          </button>
 
         </div>
 
       </section>
 
 
-      <!-- ARABIC -->
+      <!-- ==================== ARABIC ==================== -->
 
       <section
         id="arabic"
-        class="language-panel arabic">
+        class="card-section"
+        lang="ar"
+        dir="rtl">
 
-        <div class="person-name">
-          مهدي حاجي محمدي
+        <div class="business-card">
+
+          <img
+            src="arabic.jpeg"
+            alt="بطاقة مهدي حاجي محمدي">
+
         </div>
 
-        <div class="position">
+        <div class="info rtl">
 
-          <strong>
+          <div class="name">
+            مهدي حاجي محمدي
+          </div>
+
+          <div class="position">
             المستشار الأول
-          </strong>
+          </div>
 
-          <br>
+          <div class="position">
+            الشؤون القانونية والدولية
+          </div>
 
-          الشؤون القانونية والدولية
+          <div class="organization">
+            سفارة الجمهورية الإسلامية الإيرانية في الرياض
+          </div>
 
-          <br>
+          <div class="contact">
 
-          سفارة الجمهورية الإسلامية الإيرانية في الرياض
+            <div class="contact-row">
+              <span class="contact-icon">☎</span>
 
+              <a
+                class="ltr"
+                href="tel:+966581810190">
+                +966 58 181 0190
+              </a>
+            </div>
+
+            <div class="contact-row">
+              <span class="contact-icon">@</span>
+
+              <a
+                class="ltr"
+                href="mailto:hajimohammadi_m@yahoo.com">
+                hajimohammadi_m@yahoo.com
+              </a>
+            </div>
+
+            <div class="contact-row">
+              <span class="contact-icon">TG</span>
+
+              <a
+                class="ltr"
+                href="https://t.me/Iran_Riyadh"
+                target="_blank"
+                rel="noopener noreferrer">
+                @Iran_Riyadh
+              </a>
+            </div>
+
+          </div>
         </div>
 
 
-        <div class="detail">
+        <!-- ACTIONS -->
 
-          <div class="label">
-            الهاتف المحمول
-          </div>
+        <div class="action-box">
 
-          <div class="value">
+          <button
+            class="action-btn"
+            onclick="saveContact()">
+            حفظ جهة الاتصال
+          </button>
 
-            <a
-              class="ltr"
-              href="tel:+966581810190">
-
-              +966 58 181 0190
-
-            </a>
-
-          </div>
-
-        </div>
-
-
-        <div class="detail">
-
-          <div class="label">
-            البريد الإلكتروني
-          </div>
-
-          <div class="value">
-
-            <a
-              class="ltr"
-              href="mailto:hajimohammadi_m@yahoo.com">
-
-              hajimohammadi_m@yahoo.com
-
-            </a>
-
-          </div>
-
-        </div>
-
-
-        <div class="detail">
-
-          <div class="label">
-            تلغرام
-          </div>
-
-          <div class="value">
-
-            <a
-              class="ltr"
-              href="https://t.me/Iran_Riyadh"
-              target="_blank"
-              rel="noopener">
-
-              @Iran_Riyadh
-
-            </a>
-
-          </div>
-
-        </div>
-
-
-        <div class="actions">
-
-          <a href="tel:+966581810190">
-            اتصال
-          </a>
-
-          <a href="mailto:hajimohammadi_m@yahoo.com">
-            البريد الإلكتروني
-          </a>
-
-          <a
-            href="https://t.me/Iran_Riyadh"
-            target="_blank"
-            rel="noopener">
-
-            تلغرام
-
-          </a>
+          <button
+            class="action-btn secondary"
+            onclick="shareCard()">
+            مشاركة البطاقة
+          </button>
 
         </div>
 
       </section>
 
-    </div>
 
+      <div class="footer">
+        © Mahdi Hajimohammadi
+      </div>
 
-    <div class="footer">
-      Digital Business Card
-    </div>
-
+    </main>
   </div>
 
-</div>
+
+  <script>
+
+    /* ================= LANGUAGE ================= */
+
+    function showLanguage(language) {
+
+      const englishSection =
+        document.getElementById("english");
+
+      const arabicSection =
+        document.getElementById("arabic");
+
+      const englishBtn =
+        document.getElementById("englishBtn");
+
+      const arabicBtn =
+        document.getElementById("arabicBtn");
 
 
-<!-- LANGUAGE SCRIPT -->
+      if (language === "arabic") {
 
-<script>
+        englishSection.classList.remove("active");
+        arabicSection.classList.add("active");
 
-function showLanguage(language) {
+        englishBtn.classList.remove("active");
+        arabicBtn.classList.add("active");
 
-  const english =
-    document.getElementById("english");
+        document.documentElement.lang = "ar";
+        document.documentElement.dir = "rtl";
 
-  const arabic =
-    document.getElementById("arabic");
+      } else {
 
-  const englishButton =
-    document.getElementById("englishButton");
+        arabicSection.classList.remove("active");
+        englishSection.classList.add("active");
 
-  const arabicButton =
-    document.getElementById("arabicButton");
+        arabicBtn.classList.remove("active");
+        englishBtn.classList.add("active");
 
-  const cardImage =
-    document.getElementById("businessCardImage");
-
-
-  if (language === "english") {
-
-    english.classList.add("active");
-    arabic.classList.remove("active");
-
-    englishButton.classList.add("active");
-    arabicButton.classList.remove("active");
-
-    document.documentElement.lang = "en";
-
-    /* BLACK / GOLD CARD */
-    cardImage.src = "english-card.jpg";
-    cardImage.alt =
-      "Mahdi Hajimohammadi English Business Card";
-
-  }
+        document.documentElement.lang = "en";
+        document.documentElement.dir = "ltr";
+      }
+    }
 
 
-  if (language === "arabic") {
+    /* ================= SAVE CONTACT ================= */
 
-    arabic.classList.add("active");
-    english.classList.remove("active");
+    function saveContact() {
 
-    arabicButton.classList.add("active");
-    englishButton.classList.remove("active");
+      const vCard = [
+        "BEGIN:VCARD",
+        "VERSION:3.0",
+        "FN:Mahdi Hajimohammadi",
+        "N:Mahdi;Hajimohammadi;;;",
+        "ORG:Embassy of the Islamic Republic of Iran in Riyadh",
+        "TITLE:First Counsellor; Legal and International Affairs Specialist",
+        "TEL;TYPE=CELL:+966581810190",
+        "EMAIL;TYPE=INTERNET:hajimohammadi_m@yahoo.com",
+        "URL:https://mahdihajimohammadi-arch.github.io/Business-Card/",
+        "NOTE:Digital Business Card",
+        "END:VCARD"
+      ].join("\r\n");
 
-    document.documentElement.lang = "ar";
+      const blob =
+        new Blob(
+          [vCard],
+          { type: "text/vcard;charset=utf-8" }
+        );
 
-    /* CREAM / GOLD CARD */
-    cardImage.src = "arabic-card.jpg";
-    cardImage.alt =
-      "Mahdi Hajimohammadi Arabic Business Card";
+      const url =
+        URL.createObjectURL(blob);
 
-  }
+      const link =
+        document.createElement("a");
 
-}
+      link.href = url;
+      link.download =
+        "Mahdi-Hajimohammadi.vcf";
 
-</script>
+      document.body.appendChild(link);
+
+      link.click();
+
+      document.body.removeChild(link);
+
+      URL.revokeObjectURL(url);
+    }
+
+
+    /* ================= SHARE ================= */
+
+    async function shareCard() {
+
+      const shareData = {
+
+        title:
+          "Mahdi Hajimohammadi",
+
+        text:
+          "Mahdi Hajimohammadi – Digital Business Card",
+
+        url:
+          "https://mahdihajimohammadi-arch.github.io/Business-Card/"
+      };
+
+
+      if (
+        navigator.share &&
+        navigator.canShare
+      ) {
+
+        try {
+
+          if (
+            navigator.canShare({
+              title: shareData.title,
+              text: shareData.text,
+              url: shareData.url
+            })
+          ) {
+
+            await navigator.share(shareData);
+
+            return;
+          }
+
+        } catch (error) {
+
+          if (
+            error.name === "AbortError"
+          ) {
+            return;
+          }
+        }
+      }
+
+
+      /* FALLBACK: COPY LINK */
+
+      try {
+
+        await navigator.clipboard.writeText(
+          shareData.url
+        );
+
+        alert(
+          "Card link copied to clipboard."
+        );
+
+      } catch (error) {
+
+        prompt(
+          "Copy this card link:",
+          shareData.url
+        );
+      }
+    }
+
+  </script>
 
 </body>
 </html>
+```
